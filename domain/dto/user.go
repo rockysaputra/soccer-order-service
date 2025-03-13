@@ -7,7 +7,7 @@ type LoginRequest struct {
 	Password string `json:"password" validate:"required"`
 }
 
-type registerRequest struct {
+type RegisterRequest struct {
 	Name            string `json:"name" validate:"required"`
 	Username        string `json:"username" validate:"required"`
 	Password        string `json:"password" validate:"required"`
@@ -17,29 +17,30 @@ type registerRequest struct {
 	RoleID          uint
 }
 
-type updateRequest struct {
-	Name            string `json:"name" validate:"required"`
-	Username        string `json:"username" validate:"required"`
-	Password        string `json:"password,omitempty"`
-	ConfirmPassword string `json:"confirmPassword,omitempty"`
-	Email           string `json:"email" validate:"required,email"`
-	PhoneNumber     string `json:"phoneNumber" validate:"required"`
+type UpdateRequest struct {
+	Name            string  `json:"name" validate:"required"`
+	Username        string  `json:"username" validate:"required"`
+	Password        *string `json:"password,omitempty"`
+	ConfirmPassword *string `json:"confirmPassword,omitempty"`
+	Email           string  `json:"email" validate:"required,email"`
+	PhoneNumber     string  `json:"phoneNumber" validate:"required"`
 	RoleID          uint
 }
 
-type userResponse struct {
+type UserResponse struct {
 	UUID        uuid.UUID `json:"uuid"`
 	Name        string    `json:"name"`
+	Username    string    `json:"username"`
 	Email       string    `json:"email"`
 	PhoneNumber string    `json:"phoneNumber"`
 	Role        string    `json:"role"`
 }
 
-type loginResponse struct {
-	User  userResponse `json:"user"`
+type LoginResponse struct {
+	User  UserResponse `json:"user"`
 	Token string       `json:"token"`
 }
 
-type registerResponse struct {
-	User userResponse `json:"user"`
+type RegisterResponse struct {
+	User UserResponse `json:"user"`
 }
